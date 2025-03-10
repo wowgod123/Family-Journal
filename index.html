@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Journal</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #1a1a1a;
+            color: #00ff00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .journal-container {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .input-placeholder {
+            border: 2px dashed #00ff00;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-placeholder:hover {
+            border-color: #00b300;
+        }
+
+        .date-time-input {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .date-time-input input[type="datetime-local"] {
+            background-color: #333;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+
+        .date-time-input button {
+            background-color: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .journal-entry {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .journal-entry textarea {
+            background-color: #333;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+            height: 200px;
+            resize: vertical;
+        }
+
+        .journal-entry button {
+            background-color: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .display-journal-entries {
+            margin-top: 30px;
+            border-top: 1px solid #00ff00;
+            padding-top: 20px;
+        }
+
+        .journal-item {
+            border-bottom: 1px dashed #00ff00;
+            padding: 10px 0;
+        }
+
+        .journal-item strong {
+            color: #00b300;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="journal-container">
+        <div class="input-placeholder">Enter Date & Time for your Journal Entry</div>
+        <div class="date-time-input">
+            <input type="datetime-local" id="entryDateTime">
+            <button id="confirmDateTime">Confirm</button>
+        </div>
+        <div class="journal-entry">
+            <textarea id="journalText" placeholder="Write your journal entry here..."></textarea>
+            <button id="saveJournal">Save Entry</button>
+        </div>
+        <div class="display-journal-entries">
+            <h2>Journal Entries</h2>
+            <div id="journalEntriesList"></div>
+        </div>
+    </div>
+
+    <script>
+        const placeholder = document.querySelector('.input-placeholder');
+        const dateTimeInput = document.querySelector('.date-time-input');
+        const journalEntry = document.querySelector('.journal-entry');
+        const confirmDateTimeButton = document.getElementById('confirmDateTime');
+        const saveJournalButton = document.getElementById('saveJournal');
+        const journalText = document.getElementById('journalText');
+        const entryDateTimeInput = document.getElementById('entryDateTime');
+        const journalEntriesList = document.getElementById('journalEntriesList');
+
+        let selectedDateTime = null;
+        let journalData = JSON.parse(localStorage.getItem('journalData')) || [];
+
+        function displayJournalEntries() {
+            journalEntriesList.innerHTML = '';
+            journalData.forEach(entry => {
+                const journalItem = document.createElement('div');
+                journalItem.classList.add('journal-item');
+                journalItem.innerHTML = `<strong>${entry.dateTime}:</strong><br>${entry.text}`;
+                journalEntriesList.appendChild(journalItem);
+            });
+        }
+
+        displayJournalEntries();
+
+        placeholder.addEventListener('click', () => {
+            placeholder.style.display = 'none';
+            dateTimeInput.style.display = 'block';
+        });
+
+        confirmDateTimeButton.addEventListener('click', () => {
+            selectedDateTime = entryDateTimeInput.value;
+            if (selectedDateTime) {
+                dateTimeInput.style.display = 'none';
+                journalEntry.style.display = 'block';
+            } else {
+                alert('Please select a date and time.');
+            }
+        });
+
+        saveJournalButton.addEventListener('click', () => {
+            const entryText = journalText.value;
+            if (entryText && selectedDateTime) {
+                journalData.push({
+                    dateTime: selectedDateTime,
+                    text: entryText
+                });
+                localStorage.setItem('journalData', JSON.stringify(journalData));
+                journalText.value = '';
+                journalEntry.style.display = 'none';
+                placeholder.style.display = 'block';
+                displayJournalEntries();
+            } else {
+                alert('Please enter your journal entry.');
+            }
+        });
+    </script>
+
+</body>
+</html>
