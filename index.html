@@ -6,12 +6,12 @@
     <title>RavishKL</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-
-
-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            margin: 0; /* Reset default body margin */
+            overflow-x: hidden;  /* Prevent horizontal scrollbar */
         }
         .header {
             background: linear-gradient(to right, #6ee7b7, #17c3b2); /* Turquoise gradient */
@@ -69,6 +69,8 @@
             transition: 0.3s ease-in-out;
             padding-top: 60px;
             z-index: 10;
+            overflow-y: auto; /* Enable vertical scrolling if needed */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
         }
         .menu.active {
             left: 0;
@@ -180,6 +182,23 @@
             font-weight: 600; /* Make the text bold */
             color: #1e293b;
         }
+        .background-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows clicks to go through */
+            z-index: -1;
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: #f9fafb;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
 
         @media (max-width: 768px) {  /* Media query for mobile devices */
             .header {
@@ -217,6 +236,7 @@
                 <div class="bar bar3"></div>
             </div>
             <nav class="menu" id="menu">
+                <div class = "close-button" id = "close-menu">&times;</div>
                 <ul class="menu-options">
                     <li>Contact</li>
                     <li>About</li>
@@ -250,19 +270,25 @@
             <div class="logo-placeholder">
             </div>
             <div class="info-box">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
-
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
         </div>
     </main>
     <script>
         const hamburger = document.getElementById("hamburger");
         const menu = document.getElementById("menu");
+        const closeMenu = document.getElementById("close-menu");
+
         hamburger.addEventListener("click", () => {
             hamburger.classList.toggle("change");
             menu.classList.toggle("active");
         });
+
+        closeMenu.addEventListener("click", () => {
+            menu.classList.remove("active");
+            hamburger.classList.remove("change");
+        });
+
     </script>
 </body>
 </html>
