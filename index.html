@@ -3,189 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuristic Journal</title>
+    <title>RavishKL</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-
+
+9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
-            font-family: 'Courier New', monospace;
-            background-color: #1a1a1a;
-            color: #00ff00;
+            font-family: 'Inter', sans-serif;
+        }
+        .header {
+            background: linear-gradient(to right, #6ee7b7, #17c3b2); /* Turquoise gradient */
+            position: sticky; /* Make header sticky */
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between; /* Push elements to the edges */
+            align-items: center; /* Vertically center items */
+            padding: 1rem; /* Add padding around header content */
+            max-width: 1200px; /* Limit header width for larger screens */
+            margin: 0 auto; /* Center header content */
+        }
+
+        .header-title {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin: 0; /* Remove default margin */
+        }
+        .hamburger {
+            display: inline-block;
+            cursor: pointer;
+            padding: 16px;
+        }
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: black;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+        .change .bar1 {
+            -webkit-transform: rotate(-45deg) translate(-5px, 6px);
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .change .bar2 {
+            opacity: 0;
+        }
+        .change .bar3 {
+            -webkit-transform: rotate(45deg) translate(-5px, -6px);
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #111827; /* Dark background */
+            transition: 0.3s ease-in-out;
+            padding-top: 60px;
+            z-index: 10;
+        }
+        .menu.active {
+            left: 0;
+        }
+        .menu-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu-options li {
+            padding: 12px 20px;
+            color: #f9fafb;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .menu-options li:hover {
+            background-color: #374151; /* Slightly lighter on hover */
+        }
+        .main-content { /* New container for main content */
+            max-width: 1200px; /* Limit main content width */
+            margin: 2rem auto; /* Center main content, add top margin */
+            padding: 0 1rem; /* Add horizontal padding */
+            text-align: center; /* Default text alignment */
+        }
+        .class-button {
+            background: linear-gradient(to bottom, #6ee7b7, #17c3b2); /* Turquoise gradient */
+            color: black;
+            padding: 12px 24px;
+            border-radius: 10px;
+            margin: 10px auto; /* Center the buttons */
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            width: 200px;
+            text-align: center;
+            display: block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+        }
+        .class-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .social-button {
+            padding: 12px 24px;
+            border-radius: 10px;
+            margin: 10px auto; /* Center the buttons */
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            width: 200px;
+            text-align: center;
+            display: block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .social-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .youtube {
+            background-color: #ff0000;
+            color: white;
+        }
+        .whatsapp {
+            background-color: #25d366;
+            color: white;
+        }
+        .facebook {
+            background-color: #1877f2;
+            color: white;
+        }
+        .logo-box { /* Combined logo and info box */
+            width: 100%;
+            max-width: 400px; /* Maximum width for the combined box */
+            margin: 2rem auto; /* Center the box with margin */
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid #e0e0e0; /* Add a border */
+        }
+
+        .logo-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            margin-bottom: 1rem; /* Add space between logo and info */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+        }
+        .info-box {
+            color: #4b5563;
+        }
+        #social-links {
+            margin-top: 3rem;
         }
 
-        .journal-container {
-            background-color: #222;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-            width: 80%;
-            max-width: 600px;
+        #explore-courses {
+            margin-bottom: 2rem;
+        }
+        .heading-text{
+            font-size: 1.875rem; /* 30px */
+            line-height: 2.25rem; /* 36px */
+            font-weight: 600; /* Make the text bold */
+            color: #1e293b;
         }
 
-        .input-placeholder {
-            border: 2px dashed #00ff00;
-            padding: 20px;
-            text-align: center;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: border-color 0.3s ease;
+        @media (max-width: 768px) {  /* Media query for mobile devices */
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-content {
+                flex-direction: column; /* Stack header elements on mobile */
+            }
+            .header-title {
+                margin-bottom: 1rem; /* Add space below title on mobile */
+            }
+            .hamburger {
+                margin-left: auto;
+            }
+            .menu {
+                width: 100%;
+            }
+            .menu.active {
+                left: 0;
+            }
+            .class-button, .social-button {
+                margin: 10px auto; /* Center buttons on mobile */
+            }
         }
-
-        .input-placeholder:hover {
-            border-color: #00b300;
-        }
-
-        .date-time-input {
-            display: none;
-            margin-top: 20px;
-        }
-
-        .date-time-input input[type="datetime-local"] {
-            background-color: #333;
-            color: #00ff00;
-            border: 1px solid #00ff00;
-            padding: 10px;
-            border-radius: 5px;
-            width: 100%;
-            box-sizing: border-box;
-            font-family: 'Courier New', monospace;
-        }
-
-        .date-time-input button {
-            background-color: #00ff00;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-family: 'Courier New', monospace;
-        }
-
-        .journal-entry {
-            display: none;
-            margin-top: 20px;
-        }
-
-        .journal-entry textarea {
-            background-color: #333;
-            color: #00ff00;
-            border: 1px solid #00ff00;
-            padding: 10px;
-            border-radius: 5px;
-            width: 100%;
-            box-sizing: border-box;
-            font-family: 'Courier New', monospace;
-            height: 200px;
-            resize: vertical;
-        }
-
-        .journal-entry button {
-            background-color: #00ff00;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-family: 'Courier New', monospace;
-        }
-
-        .display-journal-entries {
-            margin-top: 30px;
-            border-top: 1px solid #00ff00;
-            padding-top: 20px;
-        }
-
-        .journal-item {
-            border-bottom: 1px dashed #00ff00;
-            padding: 10px 0;
-        }
-
-        .journal-item strong {
-            color: #00b300;
-        }
-
     </style>
 </head>
-<body>
+<body class="bg-gray-100">
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="header-title">RavishKL</a>
+            <div class="hamburger" id="hamburger">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </div>
+            <nav class="menu" id="menu">
+                <ul class="menu-options">
+                    <li>Contact</li>
+                    <li>About</li>
+                    <li>Services</li>
+                    <li>Blog</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+        <h2 id="explore-courses" class = "heading-text">Explore Courses</h2>
+        <div class="space-y-4">
+            <a href="01.html" class="class-button">Class 9</a>
+            <a href="02.html" class="class-button">Class 10</a>
+            <a href="03.html" class="class-button">Class 11</a>
+            <a href="04.html" class="class-button">Class 12</a>
+        </div>
+        <h2 id="follow-us" class = "heading-text">Follow Us</h2>
+        <div id="social-links" class="mt-6 space-y-4">
+            <a href="#" class="social-button youtube">
+                <i class="fab fa-youtube mr-2"></i> YouTube
+            </a>
+            <a href="#" class="social-button whatsapp">
+                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+            </a>
+            <a href="#" class="social-button facebook">
+                <i class="fab fa-facebook-f mr-2"></i> Facebook
+            </a>
+        </div>
+        <div class="logo-box">
+            <div class="logo-placeholder">
+            </div>
+            <div class="info-box">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
 
-    <div class="journal-container">
-        <div class="input-placeholder">Enter Date & Time for your Journal Entry</div>
-        <div class="date-time-input">
-            <input type="datetime-local" id="entryDateTime">
-            <button id="confirmDateTime">Confirm</button>
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
         </div>
-        <div class="journal-entry">
-            <textarea id="journalText" placeholder="Write your journal entry here..."></textarea>
-            <button id="saveJournal">Save Entry</button>
-        </div>
-        <div class="display-journal-entries">
-            <h2>Journal Entries</h2>
-            <div id="journalEntriesList"></div>
-        </div>
-    </div>
-
+    </main>
     <script>
-        const placeholder = document.querySelector('.input-placeholder');
-        const dateTimeInput = document.querySelector('.date-time-input');
-        const journalEntry = document.querySelector('.journal-entry');
-        const confirmDateTimeButton = document.getElementById('confirmDateTime');
-        const saveJournalButton = document.getElementById('saveJournal');
-        const journalText = document.getElementById('journalText');
-        const entryDateTimeInput = document.getElementById('entryDateTime');
-        const journalEntriesList = document.getElementById('journalEntriesList');
-
-        let selectedDateTime = null;
-        let journalData = JSON.parse(localStorage.getItem('journalData')) || [];
-
-        function displayJournalEntries() {
-            journalEntriesList.innerHTML = '';
-            journalData.forEach(entry => {
-                const journalItem = document.createElement('div');
-                journalItem.classList.add('journal-item');
-                journalItem.innerHTML = `<strong>${entry.dateTime}:</strong><br>${entry.text}`;
-                journalEntriesList.appendChild(journalItem);
-            });
-        }
-
-        displayJournalEntries();
-
-        placeholder.addEventListener('click', () => {
-            placeholder.style.display = 'none';
-            dateTimeInput.style.display = 'block';
-        });
-
-        confirmDateTimeButton.addEventListener('click', () => {
-            selectedDateTime = entryDateTimeInput.value;
-            if (selectedDateTime) {
-                dateTimeInput.style.display = 'none';
-                journalEntry.style.display = 'block';
-            } else {
-                alert('Please select a date and time.');
-            }
-        });
-
-        saveJournalButton.addEventListener('click', () => {
-            const entryText = journalText.value;
-            if (entryText && selectedDateTime) {
-                journalData.push({
-                    dateTime: selectedDateTime,
-                    text: entryText
-                });
-                localStorage.setItem('journalData', JSON.stringify(journalData));
-                journalText.value = '';
-                journalEntry.style.display = 'none';
-                placeholder.style.display = 'block';
-                displayJournalEntries();
-            } else {
-                alert('Please enter your journal entry.');
-            }
+        const hamburger = document.getElementById("hamburger");
+        const menu = document.getElementById("menu");
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("change");
+            menu.classList.toggle("active");
         });
     </script>
-
 </body>
 </html>
