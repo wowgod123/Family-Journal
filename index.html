@@ -10,31 +10,30 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            margin: 0; /* Reset default body margin */
-            overflow-x: hidden;  /* Prevent horizontal scrollbar */
+            margin: 0;
+            overflow-x: hidden;
         }
         .header {
-            background: linear-gradient(to right, #6ee7b7, #17c3b2); /* Turquoise gradient */
-            position: sticky; /* Make header sticky */
+            background: linear-gradient(to right, #6ee7b7, #17c3b2);
+            position: sticky;
             top: 0;
             z-index: 10;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .header-content {
             display: flex;
-            justify-content: space-between; /* Push elements to the edges */
-            align-items: center; /* Vertically center items */
-            padding: 1rem; /* Add padding around header content */
-            max-width: 1200px; /* Limit header width for larger screens */
-            margin: 0 auto; /* Center header content */
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
         .header-title {
             color: black;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.25rem;
-            margin: 0; /* Remove default margin */
+            margin: 0;
         }
         .hamburger {
             display: inline-block;
@@ -65,12 +64,12 @@
             left: -250px;
             width: 250px;
             height: 100%;
-            background-color: #111827; /* Dark background */
+            background-color: #111827;
             transition: 0.3s ease-in-out;
             padding-top: 60px;
             z-index: 10;
-            overflow-y: auto; /* Enable vertical scrolling if needed */
-            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            overflow-y: auto;
+            box-sizing: border-box;
         }
         .menu.active {
             left: 0;
@@ -87,20 +86,20 @@
             transition: background-color 0.3s ease;
         }
         .menu-options li:hover {
-            background-color: #374151; /* Slightly lighter on hover */
+            background-color: #374151;
         }
-        .main-content { /* New container for main content */
-            max-width: 1200px; /* Limit main content width */
-            margin: 2rem auto; /* Center main content, add top margin */
-            padding: 0 1rem; /* Add horizontal padding */
-            text-align: center; /* Default text alignment */
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            text-align: center;
         }
         .class-button {
-            background: linear-gradient(to bottom, #6ee7b7, #17c3b2); /* Turquoise gradient */
+            background: linear-gradient(to bottom, #6ee7b7, #17c3b2);
             color: black;
             padding: 12px 24px;
             border-radius: 10px;
-            margin: 10px auto; /* Center the buttons */
+            margin: 10px auto;
             cursor: pointer;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             width: 200px;
@@ -116,7 +115,7 @@
         .social-button {
             padding: 12px 24px;
             border-radius: 10px;
-            margin: 10px auto; /* Center the buttons */
+            margin: 10px auto;
             cursor: pointer;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             width: 200px;
@@ -144,24 +143,23 @@
             background-color: #1877f2;
             color: white;
         }
-        .logo-box { /* Combined logo and info box */
+        .logo-box {
             width: 100%;
-            max-width: 400px; /* Maximum width for the combined box */
-            margin: 2rem auto; /* Center the box with margin */
+            max-width: 400px;
+            margin: 2rem auto;
             background-color: #f9fafb;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
-            border: 1px solid #e0e0e0; /* Add a border */
+            border: 1px solid #e0e0e0;
         }
-
         .logo-placeholder {
             width: 150px;
             height: 150px;
             border-radius: 50%;
             background-color: #e5e7eb;
-            margin-bottom: 1rem; /* Add space between logo and info */
+            margin-bottom: 1rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -172,14 +170,13 @@
         #social-links {
             margin-top: 3rem;
         }
-
         #explore-courses {
             margin-bottom: 2rem;
         }
-        .heading-text{
-            font-size: 1.875rem; /* 30px */
-            line-height: 2.25rem; /* 36px */
-            font-weight: 600; /* Make the text bold */
+        .heading-text {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+            font-weight: 600;
             color: #1e293b;
         }
         .background-svg {
@@ -188,7 +185,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Allows clicks to go through */
+            pointer-events: none;
             z-index: -1;
         }
         .close-button {
@@ -199,29 +196,29 @@
             cursor: pointer;
             font-size: 1.5rem;
         }
-
-        @media (max-width: 768px) {  /* Media query for mobile devices */
+        @media (max-width: 768px) {
             .header {
                 flex-direction: column;
                 text-align: center;
             }
             .header-content {
-                flex-direction: column; /* Stack header elements on mobile */
+                flex-direction: column;
             }
             .header-title {
-                margin-bottom: 1rem; /* Add space below title on mobile */
+                margin-bottom: 1rem;
             }
             .hamburger {
                 margin-left: auto;
             }
             .menu {
                 width: 100%;
+                height: 100vh;
             }
             .menu.active {
                 left: 0;
             }
             .class-button, .social-button {
-                margin: 10px auto; /* Center buttons on mobile */
+                margin: 10px auto;
             }
         }
     </style>
@@ -236,7 +233,7 @@
                 <div class="bar bar3"></div>
             </div>
             <nav class="menu" id="menu">
-                <div class = "close-button" id = "close-menu">&times;</div>
+                <div class="close-button" id="close-menu">&times;</div>
                 <ul class="menu-options">
                     <li>Contact</li>
                     <li>About</li>
@@ -247,14 +244,14 @@
         </div>
     </header>
     <main class="main-content">
-        <h2 id="explore-courses" class = "heading-text">Explore Courses</h2>
+        <h2 id="explore-courses" class="heading-text">Explore Courses</h2>
         <div class="space-y-4">
             <a href="01.html" class="class-button">Class 9</a>
             <a href="02.html" class="class-button">Class 10</a>
             <a href="03.html" class="class-button">Class 11</a>
             <a href="04.html" class="class-button">Class 12</a>
         </div>
-        <h2 id="follow-us" class = "heading-text">Follow Us</h2>
+        <h2 id="follow-us" class="heading-text">Follow Us</h2>
         <div id="social-links" class="mt-6 space-y-4">
             <a href="#" class="social-button youtube">
                 <i class="fab fa-youtube mr-2"></i> YouTube
@@ -270,7 +267,7 @@
             <div class="logo-placeholder">
             </div>
             <div class="info-box">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
         </div>
     </main>
@@ -288,7 +285,6 @@
             menu.classList.remove("active");
             hamburger.classList.remove("change");
         });
-
     </script>
 </body>
 </html>
